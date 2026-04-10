@@ -1,4 +1,4 @@
-import Navbar from "../shared/Navbar";
+import NavbarComponent from "../components/Navbar/NavbarComponent";
 import Sidebar from "../shared/Sidebar";
 import { Outlet, useLocation } from "react-router-dom";
 
@@ -28,10 +28,11 @@ const DashboardLayout = () => {
         <Sidebar />
       </div>
       <div className="flex-1 ">
-        <Navbar />
+        <NavbarComponent />
 
         <div className="px-6 h-full bg-green-50">
           <Outlet />
+          
         </div>
       </div>
     </div>

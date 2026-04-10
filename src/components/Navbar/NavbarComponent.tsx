@@ -1,23 +1,27 @@
-import { BiMenu } from "react-icons/bi";
+// import { BiMenu } from "react-icons/bi";
+import { useState } from "react";
 import { FiMoon } from "react-icons/fi";
-import { FiSun } from "react-icons/fi";
+// import { FiSun } from "react-icons/fi";
 import { IoIosNotifications } from "react-icons/io";
 import { MdMenu } from "react-icons/md";
 import { Link } from "react-router-dom";
+// import modal from "../../shared/modal";
+import NavBarModal from "./NavBarModal";
 
 // interface NavBarProps {
 //   title: string;
 // }
 
-const Navbar = () => {
+// const [openModal, setOpenModal] = useState<boolean>(false);
+
+const NavbarComponent = () => {
   return (
     <div className="px-5 justify-between flex border-b border-b-gray-300 ">
       <div className="flex items-center gap-8">
-        <Link to="/">
-          <div>
-            <MdMenu size={40} className=" md:hidden" />
-          </div>
-        </Link>
+        <div >
+          <MdMenu size={40} className=" md:hidden bg-red-600" />
+        </div>
+
         <div className="flex flex-col gap-1 p-2">
           <div className="flex gap-6 items-center">
             <h1 className=" text-sm sm:text-xl lg:text-2xl font-semibold">
@@ -48,8 +52,10 @@ const Navbar = () => {
           <h1 className="text-white text-xl text-center">J</h1>
         </div>
       </div>
+
+      {/* {openModal && <NavBarModal setOpenModal={setOpenModal} />} */}
     </div>
   );
 };
 
-export default Navbar;
+export default NavbarComponent;

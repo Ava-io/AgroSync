@@ -1,7 +1,18 @@
-import React from "react";
+import { useState, type ReactElement } from "react";
 
-const modal = () => {
-  return <div></div>;
+
+
+interface ModalProps {
+  setOpenModal: any
+}
+
+
+const modal = ({setOpenModal}: ModalProps) => {
+  return (
+     <div>
+
+     </div>
+  );
 };
 
 export default modal;
