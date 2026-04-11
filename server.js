@@ -1,6 +1,5 @@
 import express from "express";
 import dotenv from "dotenv";
-import { profileEnd } from "node:console";
 import authRoutes from "./src/Endpoints/routes/Auth/Auth.js";
 
 dotenv.config();

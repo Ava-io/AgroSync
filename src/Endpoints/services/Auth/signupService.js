@@ -2,7 +2,6 @@ import { pool } from "../../config/db.js";
 import { generatePassword } from "../../utils/generatePassword.js";
 import bcrypt from "bcrypt";
 import { errorResponse, successResponse } from "../../utils/responseHandler.js";
-import { log } from "node:console";
 
 const SignupService = async (req, res) => {
   const client = await pool.connect();
@@ -11,10 +10,14 @@ const SignupService = async (req, res) => {
     const { first_name, last_name, email, phone_number } = req.body;
     console.log(req.body);
 
+    // Validate Inputs
     if (!first_name || !last_name || !email || !phone_number) {
       return errorResponse(res, 400, "All fields are required");
     }
 
+    await client.query("BEGIN");
+
+    // Check if email exists
     const emailExists = await pool.query(
       "SELECT * FROM users WHERE email = $1",
       [email],
@@ -25,20 +28,23 @@ const SignupService = async (req, res) => {
       return errorResponse(res, 400, "Email already exists");
     }
 
-    // creating farm query
+    // Create Farm
     const createFarmQuery = `
-INSERT INTO farms (name, address)
+INSERT INTO farm (name, address)
 VALUES($1, $2)
 RETURNING *
 `;
 
+    // const {name, address} = req.body;
     const farmResult = await client.query(createFarmQuery, [name, address]);
 
     console.log(farmResult);
-    const farmId = farmResult.rows[0];
-    const farmInfo = farmResult.rows;
+    console.log("this is farm result", farmResult.rows);
+    const farmId = farmResult.rows[0].id;
+    const farmInfo = farmResult.rows[0];
     console.log(farmInfo);
 
+    // Generate password
     const password = generatePassword(name);
     const role = "admin";
 
@@ -58,7 +64,6 @@ RETURNING *
     console.log(email);
 
     const userResult = await client.query(createUserQuery, [
-      id,
       first_name,
       last_name,
       email,
@@ -72,6 +77,9 @@ RETURNING *
 
     const admin = userResult.rows[0];
     console.log(admin);
+
+    // Commit Transaction
+    await client.query("COMMIT");
 
     return successResponse(res, 201, "Signup Successful", userResult.rows);
   } catch (error) {
