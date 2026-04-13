@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import LgIm from "../../assets/image 6.png";
+import LgIm from "../../../assets/image 6.png";
 import { ImLeaf } from "react-icons/im";
 import { IoIosArrowDown } from "react-icons/io";
 import LoginModal from "./LoginModal";
