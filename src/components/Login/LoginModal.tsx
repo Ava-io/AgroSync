@@ -11,6 +11,9 @@ const LoginModal = ({ setOpenModal }: LoginModalProps) => {
           kjhg
           ;'lpihuygtfdresfcgvhbjkl;pghfdesdrtyuiolp;kjnhbgvfesr5t6iokljnbhgvfdesr56t7y8u'
         </span>
+        <span>
+          Git check
+        </span>
       </div>
     </div>
   );
