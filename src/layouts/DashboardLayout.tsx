@@ -23,7 +23,7 @@ const DashboardLayout = () => {
   const pathTitle = routeTitles[pathname];
 
   return (
-    <div className="flex ">
+    <div className="flex">
       <div className="md:flex hidden">
         <Sidebar />
       </div>
